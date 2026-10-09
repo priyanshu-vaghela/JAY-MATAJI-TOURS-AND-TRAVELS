@@ -283,3 +283,43 @@ img { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* Booking and accessibility improvements */
+:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+input:focus-visible, select:focus-visible { outline-color: var(--forest); background: #f0f3de; }
+.header-contact { display: inline-flex; align-items: center; gap: 7px; margin-left: 24px; color: var(--forest); font-size: 14px; font-weight: 700; }
+.header-contact:hover { color: #28583f; }
+.planner { grid-template-columns: minmax(170px, .7fr) minmax(0, 2.7fr); }
+.planner-form { display: grid; grid-template-columns: 1.1fr 1.1fr .8fr .55fr 1fr auto; gap: 12px; }
+.planner-input { min-width: 0; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.planner-input span { color: #596053; font-size: 12px; }
+.planner-input input, .planner-input select { height: 34px; padding: 5px 0 0; border: 0; border-radius: 0; color: var(--ink); background: transparent; font-size: 15px; }
+.planner-input select { width: 100%; }
+.planner-input input::placeholder { color: #606960; }
+.fleet-rate-note { min-height: auto !important; margin-top: 11px !important; color: #4f594e !important; font-size: 13px !important; line-height: 1.55 !important; }
+.footer-contact { display: grid; align-content: start; gap: 7px; color: #dfe5d3; font-size: 15px; line-height: 1.5; }
+.footer-contact span { color: #c4cbbb; font-size: 13px; }
+.footer-contact a { margin-top: 4px; color: var(--lime); font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.destination-card-content > p, .story-body, .section-intro, .footer-brand-block > p, .detail-description { color: #4f594e; font-size: 15px; }
+.destination-meta, .fleet-card-meta, .story-points strong, .story-points small, .footer-links a, .footer-bottom-inner { font-size: 12px; }
+.destination-link, .text-link, .fleet-card-body > a { font-size: 14px; }
+
+@media (max-width: 1080px) {
+  .header-contact { display: none; }
+  .planner { grid-template-columns: 1fr; }
+  .planner-form { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 820px) {
+  .planner-form { padding-left: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .planner-form .button { grid-column: span 2; }
+  .site-nav .nav-cta { display: inline-flex; }
+}
+
+@media (max-width: 560px) {
+  .planner-form { grid-template-columns: 1fr; }
+  .planner-form .button { grid-column: auto; }
+  .planner-input { padding: 9px 0; }
+  .planner-input input, .planner-input select { font-size: 16px; }
+  .footer-contact { grid-column: 1 / -1; }
+}

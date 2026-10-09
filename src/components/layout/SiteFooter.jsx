@@ -1,6 +1,7 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { appPath } from '../paths.js';
+import { appPath } from '../../app/paths.js';
+import { phoneDisplay, quoteMessage, whatsappUrl } from '../../features/contact/contact.js';
 
 export default function SiteFooter() {
   return (
@@ -8,13 +9,13 @@ export default function SiteFooter() {
       <div className="page-shell footer-main">
         <div className="footer-brand-block">
           <Link className="brand footer-brand" to="/" aria-label="Jay Mataji Tours and Travels home">
-            <img src="/assets/header-section/Heliotrope-removebg-preview.png" alt="" />
+            <img src={appPath('/assets/header-section/Heliotrope-removebg-preview.png')} alt="" />
             <span>
               Jay Mataji
               <small>Tours &amp; Travels</small>
             </span>
           </Link>
-          <p>Thoughtful journeys, warm hospitality, and the freedom to take the scenic route.</p>
+          <p>Car and driver across Gujarat and beyond. Tell us where you want to go and we will send you a price today.</p>
         </div>
         <div className="footer-links">
           <p className="eyebrow">Discover</p>
@@ -29,6 +30,11 @@ export default function SiteFooter() {
           </span>
           <ArrowUpRight size={20} />
         </a>
+        <div className="footer-contact">
+          <strong>Call or WhatsApp {phoneDisplay}</strong>
+          <span>Every day, 8:00 AM to 8:00 PM</span>
+          <a href={whatsappUrl(quoteMessage())}>Get a quote on WhatsApp</a>
+        </div>
       </div>
       <div className="footer-bottom">
         <div className="page-shell footer-bottom-inner">

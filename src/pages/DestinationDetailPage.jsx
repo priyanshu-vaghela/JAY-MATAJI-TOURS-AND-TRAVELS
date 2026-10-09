@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowUpRight, MapPin, Star } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
-import { getDestination } from '../api.js';
+import { getDestination } from '../features/destinations/api/destinationsApi.js';
+import { quoteMessage, whatsappUrl } from '../features/contact/contact.js';
 
 export default function DestinationDetailPage() {
   const { id } = useParams();
@@ -69,7 +70,7 @@ export default function DestinationDetailPage() {
             <div><dt>Famous for</dt><dd>{destination.famous_for}</dd></div>
             <div><dt>Location</dt><dd><MapPin size={14} /> {destination.location}</dd></div>
           </dl>
-          <Link className="button button-dark detail-plan-button" to="/#plan-trip">Plan a journey <ArrowUpRight size={16} /></Link>
+          <a className="button button-dark detail-plan-button" href={whatsappUrl(quoteMessage({ destination: destination.name }))}>Get a quote <ArrowUpRight size={16} /></a>
         </aside>
         <article className="detail-story">
           <p className="eyebrow">A PLACE TO REMEMBER</p>

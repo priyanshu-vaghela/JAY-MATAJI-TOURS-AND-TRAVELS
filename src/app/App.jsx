@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import SiteFooter from './components/SiteFooter.jsx';
-import SiteHeader from './components/SiteHeader.jsx';
-import DestinationDetailPage from './components/DestinationDetailPage.jsx';
-import HomePage from './components/HomePage.jsx';
+import SiteFooter from '../components/layout/SiteFooter.jsx';
+import SiteHeader from '../components/layout/SiteHeader.jsx';
+import DestinationDetailPage from '../pages/DestinationDetailPage.jsx';
+import HomePage from '../pages/HomePage.jsx';
 import { appPath } from './paths.js';
 
 function NotFoundPage() {

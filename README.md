@@ -4,7 +4,7 @@ The site uses a React + Vite frontend with the existing PHP/MySQL database for d
 
 ## Local development
 
-1. Import `jay_mataji.sql` into the `jay_mataji` MySQL database and configure the credentials in `config.php`.
+1. Import `jay_mataji.sql` into the `jay_mataji` MySQL database and configure the credentials in `server/config/database.php` (or set the `DB_*` environment variables shown in `.env.example`).
 2. Install the frontend dependencies with `npm install`.
 3. Start PHP's built-in server from the repository root: `php -S 127.0.0.1:8000`.
 4. In another terminal, start Vite with `npm run dev`.
@@ -18,4 +18,8 @@ Run `npm run build`, then deploy the repository with the generated `build` direc
 - `GET /api/destinations.php`
 - `GET /api/destination.php?id=1`
 
-Keep `config.php` and `jay_mataji.sql` available to the PHP host. The `build` output is generated and intentionally excluded from version control.
+Keep `server/config/database.php` and `jay_mataji.sql` available to the PHP host. The root `config.php` and `api/` files are small compatibility entry points and should remain in place. The `build` output is generated and intentionally excluded from version control.
+
+## Project layout
+
+See [docs/PROJECT-STRUCTURE.md](docs/PROJECT-STRUCTURE.md) for a beginner-friendly map of the frontend, backend, assets, and legacy files.

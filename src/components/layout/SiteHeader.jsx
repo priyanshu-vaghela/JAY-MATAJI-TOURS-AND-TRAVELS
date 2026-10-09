@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { ArrowUpRight, Menu, Phone, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { appPath } from '../paths.js';
+import { appPath } from '../../app/paths.js';
+import { phoneDisplay, quoteMessage, whatsappUrl } from '../../features/contact/contact.js';
 
 const navigation = [
   ['About', 'about_us'],
@@ -26,7 +27,7 @@ export default function SiteHeader() {
       <header className="site-header">
         <div className="header-inner page-shell">
           <Link className="brand" to="/" aria-label="Jay Mataji Tours and Travels home" onClick={closeMenu}>
-            <img src="/assets/header-section/Heliotrope-removebg-preview.png" alt="" />
+            <img src={appPath('/assets/header-section/Heliotrope-removebg-preview.png')} alt="" />
             <span>
               Jay Mataji
               <small>Tours &amp; Travels</small>
@@ -50,9 +51,12 @@ export default function SiteHeader() {
               </a>
             ))}
             <a className="nav-cta" href={sectionHref('plan-trip')} onClick={closeMenu}>
-              Plan a journey <ArrowUpRight size={15} strokeWidth={1.8} />
+              Get a quote <ArrowUpRight size={15} strokeWidth={1.8} />
             </a>
           </nav>
+          <a className="header-contact" href={whatsappUrl(quoteMessage())} aria-label={`Contact us on WhatsApp at ${phoneDisplay}`}>
+            <Phone size={15} /> <span>{phoneDisplay}</span>
+          </a>
         </div>
       </header>
       {menuOpen && <button className="nav-backdrop" aria-label="Close navigation menu" onClick={closeMenu} />}

@@ -1,4 +1,4 @@
-import { appPath } from './paths.js';
+import { appPath } from '../../../app/paths.js';
 
 async function getJson(url, signal) {
   const response = await fetch(url, {

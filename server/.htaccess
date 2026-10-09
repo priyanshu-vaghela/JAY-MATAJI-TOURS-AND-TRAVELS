@@ -1,0 +1,3 @@
+# The server directory contains implementation and configuration files.
+# Public requests must use the small entry points in /api instead.
+Require all denied
