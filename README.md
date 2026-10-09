@@ -1,0 +1,21 @@
+# Jay Mataji Tours & Travels
+
+The site uses a React + Vite frontend with the existing PHP/MySQL database for destination data.
+
+## Local development
+
+1. Import `jay_mataji.sql` into the `jay_mataji` MySQL database and configure the credentials in `config.php`.
+2. Install the frontend dependencies with `npm install`.
+3. Start PHP's built-in server from the repository root: `php -S 127.0.0.1:8000`.
+4. In another terminal, start Vite with `npm run dev`.
+
+Vite serves the React app at `http://127.0.0.1:5173` and forwards `/api` requests to PHP at port 8000. Set `VITE_API_TARGET` if PHP runs at a different URL.
+
+## Production
+
+Run `npm run build`, then deploy the repository with the generated `build` directory to an Apache/PHP host. The root `index.php` serves the built React app and adjusts paths to the repository's URL (whether it is hosted at the domain root or under a project folder). `.htaccess` sends destination detail routes back to React, and the PHP API reads from the existing MySQL tables:
+
+- `GET /api/destinations.php`
+- `GET /api/destination.php?id=1`
+
+Keep `config.php` and `jay_mataji.sql` available to the PHP host. The `build` output is generated and intentionally excluded from version control.
