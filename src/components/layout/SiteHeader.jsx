@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowUpRight, Menu, Phone, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { appPath } from '../../app/paths.js';
@@ -21,6 +21,17 @@ export default function SiteHeader() {
   function closeMenu() {
     setMenuOpen(false);
   }
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') closeMenu();
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [menuOpen]);
 
   return (
     <>

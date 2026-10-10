@@ -10,6 +10,7 @@ export default function DestinationDetailPage() {
   const [attractions, setAttractions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [errorStatus, setErrorStatus] = useState(0);
   const [requestVersion, setRequestVersion] = useState(0);
 
   useEffect(() => {
@@ -17,6 +18,9 @@ export default function DestinationDetailPage() {
 
     setLoading(true);
     setError('');
+    setErrorStatus(0);
+    setDestination(null);
+    setAttractions([]);
     getDestination(id, controller.signal)
       .then((result) => {
         setDestination(result.destination);
@@ -26,6 +30,7 @@ export default function DestinationDetailPage() {
       .catch((requestError) => {
         if (requestError.name !== 'AbortError') {
           setError(requestError.message);
+          setErrorStatus(requestError.status || 0);
         }
       })
       .finally(() => {
@@ -38,14 +43,14 @@ export default function DestinationDetailPage() {
   }, [id, requestVersion]);
 
   if (loading) {
-    return <main className="detail-state page-shell" role="status"><span className="loading-spinner" /> Finding the details…</main>;
+    return <main className="detail-state page-shell"><span className="loading-spinner" /><span role="status">Finding the details…</span></main>;
   }
 
   if (error || !destination) {
     return (
-      <main className="detail-state page-shell" role="alert">
-        <p>{error || 'Destination not found.'}</p>
-        <button className="button button-dark" type="button" onClick={() => setRequestVersion((version) => version + 1)}>Try again</button>
+      <main className="detail-state page-shell">
+        <p role="alert">{error || 'Destination not found.'}</p>
+        {errorStatus !== 404 && <button className="button button-dark" type="button" onClick={() => setRequestVersion((version) => version + 1)}>Try again</button>}
         <Link className="text-link" to="/#destination">Back to destinations</Link>
       </main>
     );

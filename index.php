@@ -21,6 +21,7 @@ $scriptName = isset($_SERVER['SCRIPT_NAME']) ? str_replace('\\', '/', $_SERVER['
 $siteBasePath = dirname($scriptName);
 $siteBasePath = $siteBasePath === '.' || $siteBasePath === '/' ? '' : rtrim($siteBasePath, '/');
 $indexContent = str_replace('/build/', $siteBasePath . '/build/', $indexContent);
+$indexContent = str_replace('content="/assets/', 'content="' . $siteBasePath . '/assets/', $indexContent);
 $indexContent = str_replace(
     "window.__APP_BASE_PATH__ = '';",
     'window.__APP_BASE_PATH__ = ' . json_encode($siteBasePath, JSON_UNESCAPED_SLASHES) . ';',

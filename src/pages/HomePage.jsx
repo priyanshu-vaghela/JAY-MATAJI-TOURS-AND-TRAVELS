@@ -8,10 +8,16 @@ import { appPath } from '../app/paths.js';
 const heroImage = appPath('/assets/optimized/hero.jpg');
 const aboutImage = appPath('/assets/about_us/about-banner.png');
 const fleet = [
-  { name: 'Four-seater', image: appPath('/assets/optimized/swift.jpg'), detail: 'A nimble, comfortable ride for couples and small families.', seats: 'Up to 4 guests', rate: 'From Rs. 12/km' },
-  { name: 'Family MPV', image: appPath('/assets/optimized/ertiga.jpg'), detail: 'Room for the whole family, luggage, and a few detours.', seats: 'Up to 7 guests', rate: 'From Rs. 18/km' },
-  { name: 'Group traveller', image: appPath('/assets/choose_ride/urbania.jpg'), detail: 'An easygoing way to keep a big group together on the road.', seats: 'Up to 17 guests', rate: 'From Rs. 28/km' },
+  { name: 'Four-seater', image: appPath('/assets/optimized/swift.jpg'), detail: 'A nimble, comfortable ride for couples and small families.', seats: 'Up to 4 guests', maxPeople: 4, rate: 'From Rs. 12/km' },
+  { name: 'Family MPV', image: appPath('/assets/optimized/ertiga.jpg'), detail: 'Room for the whole family, luggage, and a few detours.', seats: 'Up to 7 guests', maxPeople: 7, rate: 'From Rs. 18/km' },
+  { name: 'Group traveller', image: appPath('/assets/choose_ride/urbania.jpg'), detail: 'An easygoing way to keep a big group together on the road.', seats: 'Up to 17 guests', maxPeople: 17, rate: 'From Rs. 28/km' },
 ];
+
+function todayInLocalTime() {
+  const now = new Date();
+  const offset = now.getTimezoneOffset() * 60_000;
+  return new Date(now.getTime() - offset).toISOString().slice(0, 10);
+}
 
 function DestinationGrid({ destinations, isLoading, error, onRetry }) {
   if (isLoading) return <div className="destination-message" role="status"><span className="loading-spinner" />Finding your next favourite place…</div>;
@@ -26,6 +32,9 @@ export default function HomePage() {
   const [error, setError] = useState('');
   const [requestVersion, setRequestVersion] = useState(0);
   const [enquiry, setEnquiry] = useState({ pickup: '', destination: '', date: '', people: '', car: '' });
+  const [enquiryError, setEnquiryError] = useState('');
+  const selectedVehicle = fleet.find((vehicle) => vehicle.name === enquiry.car);
+  const maxPeople = selectedVehicle?.maxPeople || 17;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -33,12 +42,43 @@ export default function HomePage() {
     return () => controller.abort();
   }, [requestVersion]);
 
-  function updateEnquiry(field, value) { setEnquiry((current) => ({ ...current, [field]: value })); }
-  function handleEnquiry(event) { event.preventDefault(); window.location.assign(whatsappUrl(quoteMessage(enquiry))); }
+  function updateEnquiry(field, value) {
+    setEnquiryError('');
+    setEnquiry((current) => ({ ...current, [field]: value }));
+  }
+
+  function handleEnquiry(event) {
+    event.preventDefault();
+    const cleanedEnquiry = { ...enquiry, pickup: enquiry.pickup.trim(), destination: enquiry.destination.trim() };
+    const people = Number(cleanedEnquiry.people);
+
+    if (!cleanedEnquiry.pickup || !cleanedEnquiry.destination) {
+      setEnquiryError('Please enter both a pick-up place and destination.');
+      return;
+    }
+    if (!cleanedEnquiry.date) {
+      setEnquiryError('Please choose a travel date.');
+      return;
+    }
+    if (cleanedEnquiry.date < todayInLocalTime()) {
+      setEnquiryError('Please choose today or a future travel date.');
+      return;
+    }
+    if (!selectedVehicle) {
+      setEnquiryError('Please choose a car type.');
+      return;
+    }
+    if (!Number.isInteger(people) || people < 1 || people > maxPeople) {
+      setEnquiryError(`The selected car can carry up to ${maxPeople} people.`);
+      return;
+    }
+
+    window.location.assign(whatsappUrl(quoteMessage(cleanedEnquiry)));
+  }
 
   return <main>
     <section className="hero" id="home" style={{ '--hero-image': `url("${heroImage}")` }}><div className="page-shell hero-inner"><p className="eyebrow hero-eyebrow"><span /> JAY MATAJI TOURS &amp; TRAVELS</p><h1>Car and driver<br />across <em>Gujarat.</em></h1><p className="hero-copy">Tell us where you want to go and we will send you a price today.</p><div className="hero-actions"><a className="button button-accent" href="#plan-trip">Get a quote on WhatsApp <MessageCircle size={17} /></a><a className="hero-secondary-link" href="#destination">Discover the places <ArrowDown size={15} /></a></div></div><div className="hero-stamp" aria-hidden="true"><span>EXPLORE</span><Compass size={27} strokeWidth={1.2} /><span>GUJARAT</span></div></section>
-    <section className="planner-wrap" id="plan-trip"><div className="planner page-shell"><div className="planner-heading"><span className="planner-icon"><MessageCircle size={18} /></span><span><strong>Get a travel quote</strong><small>We will reply on WhatsApp</small></span></div><form className="planner-form" onSubmit={handleEnquiry}><label className="planner-input"><span>PICK-UP PLACE</span><input value={enquiry.pickup} onChange={(event) => updateEnquiry('pickup', event.target.value)} placeholder="e.g. Ahmedabad" required /></label><label className="planner-input"><span>GOING TO</span><input value={enquiry.destination} onChange={(event) => updateEnquiry('destination', event.target.value)} placeholder="e.g. Dwarka" required /></label><label className="planner-input"><span>DATE</span><input type="date" value={enquiry.date} onChange={(event) => updateEnquiry('date', event.target.value)} required /></label><label className="planner-input"><span>PEOPLE</span><input type="number" min="1" value={enquiry.people} onChange={(event) => updateEnquiry('people', event.target.value)} placeholder="2" required /></label><label className="planner-input"><span>CAR TYPE</span><select value={enquiry.car} onChange={(event) => updateEnquiry('car', event.target.value)} required><option value="">Choose a car</option>{fleet.map((vehicle) => <option key={vehicle.name} value={vehicle.name}>{vehicle.name}</option>)}</select></label><button className="button button-dark" type="submit">Send on WhatsApp <ArrowUpRight size={16} /></button></form></div></section>
+    <section className="planner-wrap" id="plan-trip"><div className="planner page-shell"><div className="planner-heading"><span className="planner-icon"><MessageCircle size={18} /></span><span><strong>Get a travel quote</strong><small>We will reply on WhatsApp</small></span></div><form className="planner-form" onSubmit={handleEnquiry} noValidate><label className="planner-input"><span>PICK-UP PLACE</span><input value={enquiry.pickup} onChange={(event) => updateEnquiry('pickup', event.target.value)} placeholder="e.g. Ahmedabad" aria-describedby="enquiry-error" required /></label><label className="planner-input"><span>GOING TO</span><input value={enquiry.destination} onChange={(event) => updateEnquiry('destination', event.target.value)} placeholder="e.g. Dwarka" aria-describedby="enquiry-error" required /></label><label className="planner-input"><span>DATE</span><input type="date" min={todayInLocalTime()} value={enquiry.date} onChange={(event) => updateEnquiry('date', event.target.value)} aria-describedby="enquiry-error" required /></label><label className="planner-input"><span>PEOPLE</span><input type="number" min="1" max={maxPeople} step="1" value={enquiry.people} onChange={(event) => updateEnquiry('people', event.target.value)} placeholder="2" aria-describedby="enquiry-error" required /></label><label className="planner-input"><span>CAR TYPE</span><select value={enquiry.car} onChange={(event) => updateEnquiry('car', event.target.value)} aria-describedby="enquiry-error" required><option value="">Choose a car</option>{fleet.map((vehicle) => <option key={vehicle.name} value={vehicle.name}>{vehicle.name}</option>)}</select></label><button className="button button-dark" type="submit">Send on WhatsApp <ArrowUpRight size={16} /></button>{enquiryError && <p className="planner-error" id="enquiry-error" role="alert">{enquiryError}</p>}</form></div></section>
     <section className="section destinations-section" id="destination"><div className="page-shell"><div className="section-heading"><div><p className="eyebrow">PLACES WITH A STORY</p><h2>A little closer<br />to <em>somewhere.</em></h2></div><p className="section-intro">Ancient shorelines, sun-soaked cities, and roads that lead somewhere beautiful. These are a few of our favourite starting points.</p></div><DestinationGrid destinations={destinations} isLoading={loading} error={error} onRetry={() => { setLoading(true); setRequestVersion((version) => version + 1); }} /></div></section>
     <section className="story-section" id="about_us"><div className="page-shell story-grid"><div className="story-image-wrap"><img src={aboutImage} alt="The landscape waiting beyond the next turn" loading="lazy" /><div className="story-note"><Heart size={17} /> Travel a little more personally.</div></div><div className="story-copy"><p className="eyebrow">A LITTLE ABOUT US</p><h2>More than a trip.<br /><em>A feeling that stays.</em></h2><p className="story-body">Jay Mataji Tours &amp; Travels brings local know-how, dependable rides, and the little details together—so you can be right where you want to be.</p><div className="story-points"><div><span><Compass size={18} /></span><p><strong>Know the way</strong><small>Local insight for memorable routes.</small></p></div><div><span><ShieldCheck size={18} /></span><p><strong>Ride with ease</strong><small>Thoughtful planning, trusted drivers.</small></p></div><div><span><Sparkles size={18} /></span><p><strong>Make it yours</strong><small>Journeys shaped around your pace.</small></p></div></div><a className="text-link" href="#choose-your-ride">Find your way around <ArrowRight size={15} /></a></div></div></section>
     <section className="section fleet-section" id="choose-your-ride"><div className="page-shell"><div className="section-heading fleet-heading"><div><p className="eyebrow">ROOM FOR THE WHOLE JOURNEY</p><h2>Good company.<br /><em>Better wheels.</em></h2></div><p className="section-intro">Pick the ride that suits your crew. Every kilometre is a chance to take the scenic route.</p></div><div className="fleet-grid">{fleet.map((vehicle) => <article className="fleet-card" key={vehicle.name}><div className="fleet-image"><img src={vehicle.image} alt={vehicle.name} loading="lazy" /></div><div className="fleet-card-body"><div className="fleet-card-meta"><span>{vehicle.seats}</span><span>{vehicle.rate}</span></div><h3>{vehicle.name}</h3><p>{vehicle.detail}</p><p className="fleet-rate-note">Driver included. Fuel and tolls are extra.</p><a href={whatsappUrl(quoteMessage({ car: vehicle.name }))} aria-label={`Get a quote for the ${vehicle.name}`}>Get a quote for this car <ArrowUpRight size={16} /></a></div></article>)}</div></div></section>

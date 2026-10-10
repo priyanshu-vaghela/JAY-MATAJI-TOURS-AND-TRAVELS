@@ -1,3 +1,27 @@
+Options -Indexes
+DirectoryIndex index.php
+
+<FilesMatch "^(?:\.env.*|package(?:-lock)?\.json|jay_mataji\.sql|README\.md|vite\.config\.js|config\.php|bootstrap\.php)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), geolocation=(), microphone=()"
+</IfModule>
+
 RewriteEngine On
 
-RewriteRule ^destinations/[0-9]+/?$ index.php [L,QSA]
+# Source and legacy files are not part of the public site. The API remains
+# available through the public /api wrapper directory.
+RewriteRule ^(?:legacy|docs|src|server|\.vscode|\.reticle)(?:/|$) - [R=404,L,NC]
+
+# Leave real files (compiled assets and API entry points) alone; serve the
+# React application for every other route, including unknown URLs.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+RewriteRule ^ index.php [L,QSA]

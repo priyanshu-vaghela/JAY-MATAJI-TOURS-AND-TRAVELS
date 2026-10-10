@@ -6,12 +6,14 @@ export function whatsappUrl(message) {
 }
 
 export function quoteMessage({ pickup = '', destination = '', date = '', people = '', car = '' } = {}) {
+  const clean = (value) => String(value).trim();
+
   return [
     'Hello Jay Mataji Tours, I would like a quote.',
-    `Pick-up: ${pickup || 'Not decided'}.`,
-    `Going to: ${destination || 'Not decided'}.`,
-    `Date: ${date || 'Not decided'}.`,
-    `People: ${people || 'Not decided'}.`,
-    `Car: ${car || 'Not decided'}.`,
+    `Pick-up: ${clean(pickup) || 'Not decided'}.`,
+    `Going to: ${clean(destination) || 'Not decided'}.`,
+    `Date: ${clean(date) || 'Not decided'}.`,
+    `People: ${clean(people) || 'Not decided'}.`,
+    `Car: ${clean(car) || 'Not decided'}.`,
   ].join(' ');
 }

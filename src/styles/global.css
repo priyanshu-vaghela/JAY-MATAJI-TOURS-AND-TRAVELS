@@ -9,11 +9,11 @@
   font-weight: 400;
   --ink: #17211c;
   --forest: #193c2e;
-  --moss: #777b54;
+  --moss: #5d6140;
   --lime: #d8e16b;
   --paper: #f6f5ef;
   --white: #fffefa;
-  --muted: #72776f;
+  --muted: #5b6159;
   --line: rgba(23, 33, 28, .14);
   --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
@@ -33,7 +33,7 @@ img { display: block; max-width: 100%; }
 .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
 .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--forest); font-size: 17px; font-weight: 700; letter-spacing: -.04em; line-height: 1; }
 .brand img { width: 42px; height: 42px; object-fit: contain; }
-.brand small { display: block; margin-top: 6px; color: #8a8e78; font-size: 11px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+.brand small { display: block; margin-top: 6px; color: #666b55; font-size: 11px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
 .site-nav { display: flex; align-items: center; gap: 36px; color: #555c54; font-size: 13px; font-weight: 500; }
 .site-nav > a:not(.nav-cta) { transition: color .2s ease; }
 .site-nav > a:not(.nav-cta):hover, .footer-links a:hover { color: var(--moss); }
@@ -92,9 +92,9 @@ img { display: block; max-width: 100%; }
 .destination-index { position: absolute; top: 14px; left: 15px; color: white; font-family: var(--serif); font-size: 15px; }
 .destination-open { position: absolute; right: 14px; bottom: 14px; display: grid; width: 37px; height: 37px; place-items: center; color: var(--ink); background: var(--lime); border-radius: 50%; }
 .destination-card-content { padding: 20px 20px 22px; }
-.destination-meta { display: flex; justify-content: space-between; gap: 10px; color: #81867b; font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.destination-meta { display: flex; justify-content: space-between; gap: 10px; color: #5f655b; font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 .destination-meta > span { display: inline-flex; align-items: center; gap: 6px; }
-.destination-meta .rating { color: #aa8b43; letter-spacing: 0; }
+.destination-meta .rating { color: #7a5f1c; letter-spacing: 0; }
 .destination-card h3 { margin: 12px 0 8px; font-size: 23px; font-weight: 550; letter-spacing: -.045em; }
 .destination-card-content > p { display: -webkit-box; min-height: 57px; overflow: hidden; margin: 0; color: var(--muted); font-size: 11px; line-height: 1.75; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
 .destination-link, .text-link { display: inline-flex; align-items: center; gap: 9px; margin-top: 18px; color: var(--forest); font-size: 11px; font-weight: 650; }
@@ -132,7 +132,7 @@ img { display: block; max-width: 100%; }
 .fleet-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
 .fleet-card:hover .fleet-image img { transform: scale(1.04); }
 .fleet-card-body { padding: 19px 20px 20px; }
-.fleet-card-meta { display: flex; justify-content: space-between; gap: 10px; color: #797f71; font-size: 9px; }
+.fleet-card-meta { display: flex; justify-content: space-between; gap: 10px; color: #5f655b; font-size: 9px; }
 .fleet-card h3 { margin: 11px 0 7px; font-size: 20px; font-weight: 550; letter-spacing: -.04em; }
 .fleet-card-body > p { min-height: 38px; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
 .fleet-card-body > a { display: inline-flex; align-items: center; gap: 7px; margin-top: 14px; color: var(--forest); font-size: 10px; font-weight: 650; }
@@ -290,8 +290,10 @@ input:focus-visible, select:focus-visible { outline-color: var(--forest); backgr
 .planner-input { min-width: 0; padding: 8px 0; border-bottom: 1px solid var(--line); }
 .planner-input span { color: #596053; font-size: 12px; }
 .planner-input input, .planner-input select { height: 34px; padding: 5px 0 0; border: 0; border-radius: 0; color: var(--ink); background: transparent; font-size: 15px; }
+.planner-input input:focus-visible, .planner-input select:focus-visible { outline: 3px solid var(--forest); outline-offset: 4px; }
 .planner-input select { width: 100%; }
 .planner-input input::placeholder { color: #606960; }
+.planner-error { grid-column: 1 / -1; margin: 0; color: #8b2e1c; font-size: 13px; font-weight: 650; }
 .fleet-rate-note { min-height: auto !important; margin-top: 11px !important; color: #4f594e !important; font-size: 13px !important; line-height: 1.55 !important; }
 .footer-contact { display: grid; align-content: start; gap: 7px; color: #dfe5d3; font-size: 15px; line-height: 1.5; }
 .footer-contact span { color: #c4cbbb; font-size: 13px; }
