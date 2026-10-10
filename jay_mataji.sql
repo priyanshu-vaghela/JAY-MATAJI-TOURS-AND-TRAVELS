@@ -43,7 +43,7 @@ CREATE TABLE `destinations` (
 INSERT INTO `destinations` (`id`, `name`, `location`, `image`, `rating`, `description`) VALUES
 (1, 'Dwarka', 'GUJARAT', './assets/Popular/Dwarka.jpeg', 5, 'Explore the spiritual and historical charm of Dwarka, one of the most sacred pilgrimage sites in India, known for its ancient temples and serene coastal beauty.'),
 (2, 'Goa', 'INDIA', './assets/Popular/The Cape.jpeg', 5, 'Experience the vibrant culture, stunning beaches, and lively nightlife of Goa, a destination that offers something for everyone.'),
-(3, 'Rajasthan', 'INDIA', './assets/Popular/pexels-rehanverma-2588193.jpg', 5, 'Immerse yourself in the royal heritage of Rajasthan, known for its majestic palaces, vibrant culture, and timeless desert landscapes.');
+(3, 'Rajasthan', 'INDIA', './assets/optimized/rajasthan.jpg', 5, 'Immerse yourself in the royal heritage of Rajasthan, known for its majestic palaces, vibrant culture, and timeless desert landscapes.');
 
 -- --------------------------------------------------------
 
@@ -69,7 +69,7 @@ CREATE TABLE `destinations_details` (
 INSERT INTO `destinations_details` (`id`, `name`, `location`, `image`, `rating`, `description`, `best_time`, `famous_for`) VALUES
 (1, 'Dwarka', 'Gujarat', '../assets/Popular/Dwarka.jpeg', 5, 'Dwarka, one of the four sacred Char Dham pilgrimage sites, is steeped in mythology and history. Revered as the ancient kingdom of Lord Krishna, this coastal city is famous for its grand temples, spiritual atmosphere, and scenic beaches. Pilgrims and travelers alike are drawn to its timeless charm and tranquil beauty.', 'Oct - Mar', 'Temples, Pilgrimage, Beaches'),
 (2, 'Goa', 'India', '../assets/Popular/The Cape.jpeg', 5, 'Goa is famous for its beautiful beaches, vibrant nightlife, and Portuguese heritage.', 'When you ready ', ''),
-(3, 'Rajasthan', 'India', '../assets/Popular/pexels-rehanverma-2588193.jpg', 4, 'Rajasthan is known for its majestic palaces, forts, and rich cultural heritage.', 'When you ready ', '');
+(3, 'Rajasthan', 'India', '../assets/optimized/rajasthan.jpg', 4, 'Rajasthan is known for its majestic palaces, forts, and rich cultural heritage.', 'When you ready ', '');
 
 -- --------------------------------------------------------
 

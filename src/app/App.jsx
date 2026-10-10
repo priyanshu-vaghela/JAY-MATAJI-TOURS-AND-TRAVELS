@@ -23,7 +23,7 @@ export default function App() {
 
   useEffect(() => {
     if (location.pathname === '/') {
-      document.title = 'Jay Mataji Tours & Travels | Find your way to wonder';
+      document.title = 'Jay Mataji Tours & Travels | Car and driver in Gujarat';
     }
 
     if (location.hash) {

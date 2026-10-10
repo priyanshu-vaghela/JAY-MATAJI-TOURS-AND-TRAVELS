@@ -33,7 +33,7 @@ img { display: block; max-width: 100%; }
 .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
 .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--forest); font-size: 17px; font-weight: 700; letter-spacing: -.04em; line-height: 1; }
 .brand img { width: 42px; height: 42px; object-fit: contain; }
-.brand small { display: block; margin-top: 6px; color: #8a8e78; font-size: 9px; font-weight: 600; letter-spacing: .17em; text-transform: uppercase; }
+.brand small { display: block; margin-top: 6px; color: #8a8e78; font-size: 11px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
 .site-nav { display: flex; align-items: center; gap: 36px; color: #555c54; font-size: 13px; font-weight: 500; }
 .site-nav > a:not(.nav-cta) { transition: color .2s ease; }
 .site-nav > a:not(.nav-cta):hover, .footer-links a:hover { color: var(--moss); }
@@ -46,7 +46,7 @@ img { display: block; max-width: 100%; }
 .hero::before { background-image: var(--hero-image); background-position: center 53%; background-size: cover; transform: scale(1.02); }
 .hero::after { background: linear-gradient(90deg, rgba(12, 29, 22, .81) 0%, rgba(18, 36, 29, .55) 43%, rgba(20, 37, 29, .1) 100%), linear-gradient(0deg, rgba(12, 29, 22, .24), transparent 40%); }
 .hero-inner { position: relative; padding-block: 95px 130px; }
-.eyebrow { display: flex; align-items: center; gap: 10px; margin: 0; color: var(--moss); font-size: 10px; font-weight: 700; letter-spacing: .17em; line-height: 1.4; }
+.eyebrow { display: flex; align-items: center; gap: 10px; margin: 0; color: var(--moss); font-size: 12px; font-weight: 700; letter-spacing: .13em; line-height: 1.4; }
 .hero-eyebrow { color: #e1e6bc; }
 .hero-eyebrow span { display: block; width: 25px; height: 1px; background: var(--lime); }
 .hero h1 { max-width: 730px; margin: 28px 0 19px; font-size: clamp(58px, 8.1vw, 110px); font-weight: 500; letter-spacing: -.076em; line-height: .91; }
@@ -59,9 +59,8 @@ img { display: block; max-width: 100%; }
 .button-accent:hover { background: #e4ec87; }
 .button-dark { padding: 0 19px; color: var(--white); background: var(--forest); }
 .hero-secondary-link { display: inline-flex; align-items: center; gap: 9px; color: rgba(255, 255, 255, .85); font-size: 12px; }
-.hero-caption { position: absolute; right: 0; bottom: 70px; left: 0; display: flex; justify-content: space-between; color: rgba(255, 255, 255, .72); font-size: 9px; font-weight: 600; letter-spacing: .15em; }
 .hero-stamp { position: absolute; right: max(32px, calc((100vw - 1200px) / 2)); bottom: 84px; display: flex; width: 112px; height: 112px; align-items: center; justify-content: center; flex-direction: column; gap: 9px; border: 1px solid rgba(255, 255, 255, .6); border-radius: 50%; color: var(--lime); transform: rotate(-12deg); }
-.hero-stamp span { font-size: 7px; font-weight: 700; letter-spacing: .2em; }
+.hero-stamp span { font-size: 11px; font-weight: 700; letter-spacing: .12em; }
 
 .planner-wrap { position: relative; z-index: 2; margin-top: -42px; }
 .planner { display: grid; min-height: 104px; grid-template-columns: 1fr 1.45fr; align-items: center; gap: 40px; padding: 20px 25px; background: var(--white); box-shadow: 0 18px 55px rgba(26, 37, 27, .1); }
@@ -135,7 +134,7 @@ img { display: block; max-width: 100%; }
 .fleet-card-body { padding: 19px 20px 20px; }
 .fleet-card-meta { display: flex; justify-content: space-between; gap: 10px; color: #797f71; font-size: 9px; }
 .fleet-card h3 { margin: 11px 0 7px; font-size: 20px; font-weight: 550; letter-spacing: -.04em; }
-.fleet-card-body > p { min-height: 38px; margin: 0; color: var(--muted); font-size: 11px; line-height: 1.65; }
+.fleet-card-body > p { min-height: 38px; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
 .fleet-card-body > a { display: inline-flex; align-items: center; gap: 7px; margin-top: 14px; color: var(--forest); font-size: 10px; font-weight: 650; }
 
 .site-footer { color: #e6e8db; background: #193c2e; }
@@ -199,7 +198,6 @@ img { display: block; max-width: 100%; }
   .site-header { z-index: 20; }
   .hero { min-height: 590px; }
   .hero-inner { padding-block: 83px 115px; }
-  .hero-caption { bottom: 54px; }
   .hero-stamp { right: 24px; bottom: 90px; width: 90px; height: 90px; }
   .planner { grid-template-columns: 1fr; gap: 16px; padding: 20px; }
   .planner-form { padding-left: 55px; }
@@ -225,7 +223,6 @@ img { display: block; max-width: 100%; }
   .page-shell { width: calc(100% - 36px); }
   .brand { gap: 7px; font-size: 15px; }
   .brand img { width: 37px; height: 37px; }
-  .brand small { font-size: 8px; }
   .hero { min-height: 600px; background-position: 60% center; }
   .hero::before { background-position: 59% center; }
   .hero::after { background: linear-gradient(90deg, rgba(12, 29, 22, .78) 0%, rgba(18, 36, 29, .47) 72%, rgba(20, 37, 29, .3) 100%), linear-gradient(0deg, rgba(12, 29, 22, .26), transparent 40%); }
@@ -233,9 +230,8 @@ img { display: block; max-width: 100%; }
   .hero h1 { margin-top: 23px; font-size: clamp(58px, 14vw, 78px); }
   .hero-copy { max-width: 340px; font-size: 13px; }
   .hero-actions { align-items: flex-start; flex-direction: column; gap: 20px; }
-  .hero-caption { bottom: 37px; font-size: 8px; }
-  .hero-stamp { right: 20px; bottom: 39px; width: 76px; height: 76px; gap: 5px; }
-  .hero-stamp span { font-size: 6px; }
+  .hero-stamp { right: 20px; bottom: 39px; width: 88px; height: 88px; gap: 5px; }
+  .hero-stamp span { font-size: 10px; letter-spacing: .08em; }
   .hero-stamp svg { width: 20px; }
   .planner-wrap { margin-top: -25px; }
   .planner { gap: 15px; padding: 16px; }
@@ -300,7 +296,7 @@ input:focus-visible, select:focus-visible { outline-color: var(--forest); backgr
 .footer-contact { display: grid; align-content: start; gap: 7px; color: #dfe5d3; font-size: 15px; line-height: 1.5; }
 .footer-contact span { color: #c4cbbb; font-size: 13px; }
 .footer-contact a { margin-top: 4px; color: var(--lime); font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
-.destination-card-content > p, .story-body, .section-intro, .footer-brand-block > p, .detail-description { color: #4f594e; font-size: 15px; }
+.destination-card-content > p, .story-body, .section-intro, .detail-description { color: #4f594e; font-size: 15px; }
 .destination-meta, .fleet-card-meta, .story-points strong, .story-points small, .footer-links a, .footer-bottom-inner { font-size: 12px; }
 .destination-link, .text-link, .fleet-card-body > a { font-size: 14px; }
 

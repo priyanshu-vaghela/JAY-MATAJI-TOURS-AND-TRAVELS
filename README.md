@@ -4,10 +4,12 @@ The site uses a React + Vite frontend with the existing PHP/MySQL database for d
 
 ## Local development
 
-1. Import `jay_mataji.sql` into the `jay_mataji` MySQL database and configure the credentials in `server/config/database.php` (or set the `DB_*` environment variables shown in `.env.example`).
+1. Import `jay_mataji.sql` into the `jay_mataji` MySQL database. Set `DB_HOST`, `DB_USER`, `DB_PASSWORD`, and `DB_NAME` in the PHP host's environment or hosting control panel; `.env.example` is a reference only because PHP does not load `.env` files by itself.
 2. Install the frontend dependencies with `npm install`.
 3. Start PHP's built-in server from the repository root: `php -S 127.0.0.1:8000`.
 4. In another terminal, start Vite with `npm run dev`.
+
+For an existing database, run `server/migrations/2026-10-10-optimize-rajasthan-image.sql` once after deploying the new asset.
 
 Vite serves the React app at `http://127.0.0.1:5173` and forwards `/api` requests to PHP at port 8000. Set `VITE_API_TARGET` if PHP runs at a different URL.
 
