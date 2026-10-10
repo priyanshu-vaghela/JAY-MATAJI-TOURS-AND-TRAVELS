@@ -16,7 +16,7 @@ RewriteEngine On
 
 # Source and legacy files are not part of the public site. The API remains
 # available through the public /api wrapper directory.
-RewriteRule ^(?:legacy|docs|src|server|\.vscode|\.reticle)(?:/|$) - [R=404,L,NC]
+RewriteRule ^(?:legacy|docs|src|server|\.git|\.vscode|\.reticle)(?:/|$) - [R=404,L,NC]
 
 # Leave real files (compiled assets and API entry points) alone; serve the
 # React application for every other route, including unknown URLs.
@@ -24,4 +24,7 @@ RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
+# Do not turn missing files such as images, favicons, or API endpoints into
+# a successful React response. Routes without an extension still use the app.
+RewriteCond %{REQUEST_URI} !\.[^/]+$
 RewriteRule ^ index.php [L,QSA]

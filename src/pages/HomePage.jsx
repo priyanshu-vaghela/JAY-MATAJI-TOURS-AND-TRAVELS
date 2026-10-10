@@ -68,7 +68,11 @@ export default function HomePage() {
       setEnquiryError('Please choose a car type.');
       return;
     }
-    if (!Number.isInteger(people) || people < 1 || people > maxPeople) {
+    if (!Number.isInteger(people) || people < 1) {
+      setEnquiryError('Enter how many people.');
+      return;
+    }
+    if (people > maxPeople) {
       setEnquiryError(`The selected car can carry up to ${maxPeople} people.`);
       return;
     }

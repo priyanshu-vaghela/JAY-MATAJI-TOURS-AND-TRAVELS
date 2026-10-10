@@ -280,7 +280,8 @@ img { display: block; max-width: 100%; }
 }
 
 /* Booking and accessibility improvements */
-:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--forest); outline-offset: 3px; }
+.site-footer :focus-visible { outline-color: var(--lime); }
 input:focus-visible, select:focus-visible { outline-color: var(--forest); background: #f0f3de; }
 .header-contact { display: inline-flex; align-items: center; gap: 7px; margin-left: 24px; color: var(--forest); font-size: 14px; font-weight: 700; }
 .header-contact:hover { color: #28583f; }
