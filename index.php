@@ -18,7 +18,7 @@ if ($indexContent === false) {
 }
 
 $scriptName = isset($_SERVER['SCRIPT_NAME']) ? str_replace('\\', '/', $_SERVER['SCRIPT_NAME']) : '/index.php';
-$siteBasePath = dirname($scriptName);
+$siteBasePath = str_replace('\\', '/', dirname($scriptName));
 $siteBasePath = $siteBasePath === '.' || $siteBasePath === '/' ? '' : rtrim($siteBasePath, '/');
 $indexContent = str_replace('/build/', $siteBasePath . '/build/', $indexContent);
 $indexContent = str_replace('content="/assets/', 'content="' . $siteBasePath . '/assets/', $indexContent);
