@@ -32,8 +32,9 @@ img { display: block; max-width: 100%; }
 .site-header { position: sticky; z-index: 20; top: 0; height: 78px; background: rgba(246, 245, 239, .96); border-bottom: 1px solid rgba(23, 33, 28, .08); backdrop-filter: blur(16px); }
 .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
 .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--forest); font-size: 17px; font-weight: 700; letter-spacing: -.04em; line-height: 1; }
-.brand img { width: 42px; height: 42px; object-fit: contain; }
+.brand img { display: block; width: 210px; height: auto; object-fit: contain; }
 .brand small { display: block; margin-top: 6px; color: #666b55; font-size: 11px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+.footer-brand img { width: 220px; }
 .site-nav { display: flex; align-items: center; gap: 36px; color: #555c54; font-size: 13px; font-weight: 500; }
 .site-nav > a:not(.nav-cta) { transition: color .2s ease; }
 .site-nav > a:not(.nav-cta):hover, .footer-links a:hover { color: var(--moss); }
@@ -250,8 +251,9 @@ img { display: block; max-width: 100%; }
 
 @media (max-width: 560px) {
   .page-shell { width: calc(100% - 36px); }
-  .brand { gap: 7px; font-size: 15px; }
-  .brand img { width: 37px; height: 37px; }
+  .brand { gap: 0; }
+  .brand img { width: min(190px, calc(100vw - 110px)); }
+  .footer-brand img { width: min(220px, 100%); }
   .hero { min-height: 600px; background-position: 60% center; }
   .hero::before { background-position: 59% center; }
   .hero::after { background: linear-gradient(90deg, rgba(12, 29, 22, .78) 0%, rgba(18, 36, 29, .47) 72%, rgba(20, 37, 29, .3) 100%), linear-gradient(0deg, rgba(12, 29, 22, .26), transparent 40%); }

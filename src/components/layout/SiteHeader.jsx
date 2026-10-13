@@ -37,11 +37,7 @@ export default function SiteHeader() {
       <header className="site-header">
         <div className="header-inner page-shell">
           <Link className="brand" to="/" aria-label="Jay Mataji Tours and Travels home" onClick={closeMenu}>
-            <img src={appPath('/assets/header-section/Heliotrope-removebg-preview.png')} alt="" />
-            <span>
-              Jay Mataji
-              <small>Tours &amp; Travels</small>
-            </span>
+            <img src={appPath('/assets/brand-wordmark.svg')} alt="" />
           </Link>
 
           <button

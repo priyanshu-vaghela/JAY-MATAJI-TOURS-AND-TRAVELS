@@ -8,11 +8,7 @@ export default function SiteFooter() {
       <div className="page-shell footer-main">
         <div className="footer-brand-block">
           <Link className="brand footer-brand" to="/" aria-label="Jay Mataji Tours and Travels home">
-            <img src={appPath('/assets/header-section/Heliotrope-removebg-preview.png')} alt="" />
-            <span>
-              Jay Mataji
-              <small>Tours &amp; Travels</small>
-            </span>
+            <img src={appPath('/assets/brand-wordmark-light.svg')} alt="" />
           </Link>
           <p>Car and driver across Gujarat and beyond. Tell us where you want to go and we will send you a price today.</p>
         </div>
