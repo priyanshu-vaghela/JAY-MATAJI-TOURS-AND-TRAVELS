@@ -84,7 +84,7 @@ function applicationBasePath()
     $scriptName = isset($_SERVER['SCRIPT_NAME'])
         ? str_replace('\\', '/', $_SERVER['SCRIPT_NAME'])
         : '/api/index.php';
-    $basePath = dirname(dirname($scriptName));
+    $basePath = str_replace('\\', '/', dirname(dirname($scriptName)));
 
     if ($basePath === '.' || $basePath === '/') {
         return '';
