@@ -1,0 +1,6 @@
+<?php
+require_once __DIR__ . '/../../lib/admin.php';
+if ($_SERVER['REQUEST_METHOD'] !== 'GET') { header('Allow: GET'); errorResponse(405, 'METHOD_NOT_ALLOWED', 'This request method is not allowed.'); } requireAdmin();
+$status = cleanText($_GET['status'] ?? '', 20); $search = cleanText($_GET['search'] ?? '', 120); $allowed=['new','contacted','confirmed','completed','cancelled','rejected']; if ($status && !in_array($status,$allowed,true)) errorResponse(422,'VALIDATION_ERROR','Invalid status.');
+try { $db=getDatabaseConnection(); $sql='SELECT id, public_reference, customer_name, phone, trip_label, travel_date, passengers, vehicle_preference, status, created_at FROM bookings WHERE 1=1'; $types=''; $values=[]; if($status){$sql.=' AND status=?';$types.='s';$values[]=$status;} if($search){$sql.=' AND (public_reference LIKE ? OR customer_name LIKE ? OR phone LIKE ?)';$types.='sss';$like='%'.$search.'%';array_push($values,$like,$like,$like);} $sql.=' ORDER BY created_at DESC LIMIT 100'; $s=$db->prepare($sql); if($types) $s->bind_param($types,...$values);$s->execute();successResponse(200,['bookings'=>$s->get_result()->fetch_all(MYSQLI_ASSOC)]);
+} catch(Throwable $e){error_log('Admin bookings failed: '.$e->getMessage());errorResponse(500,'SERVICE_UNAVAILABLE','The booking list is temporarily unavailable.');}

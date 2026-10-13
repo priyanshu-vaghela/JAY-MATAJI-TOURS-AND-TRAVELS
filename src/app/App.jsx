@@ -4,6 +4,9 @@ import SiteFooter from '../components/layout/SiteFooter.jsx';
 import SiteHeader from '../components/layout/SiteHeader.jsx';
 import DestinationDetailPage from '../pages/DestinationDetailPage.jsx';
 import HomePage from '../pages/HomePage.jsx';
+import BookingPage from '../pages/BookingPage.jsx';
+import AdminLoginPage from '../pages/AdminLoginPage.jsx';
+import AdminBookingsPage from '../pages/AdminBookingsPage.jsx';
 import { appPath } from './paths.js';
 
 function NotFoundPage() {
@@ -40,6 +43,9 @@ export default function App() {
       <SiteHeader />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/book" element={<BookingPage />} />
+        <Route path="/admin" element={<AdminLoginPage />} />
+        <Route path="/admin/bookings" element={<AdminBookingsPage />} />
         <Route path="/destinations/:id" element={<DestinationDetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

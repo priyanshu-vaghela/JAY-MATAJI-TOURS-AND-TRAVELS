@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, Menu, Phone, X } from 'lucide-react';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { appPath } from '../../app/paths.js';
-import { phoneDisplay, quoteMessage, whatsappUrl } from '../../features/contact/contact.js';
 
 const navigation = [
   ['About', 'about_us'],
@@ -62,12 +61,9 @@ export default function SiteHeader() {
               </a>
             ))}
             <a className="nav-cta" href={sectionHref('plan-trip')} onClick={closeMenu}>
-              Get a quote <ArrowUpRight size={15} strokeWidth={1.8} />
+              Book a trip <ArrowUpRight size={15} strokeWidth={1.8} />
             </a>
           </nav>
-          <a className="header-contact" href={whatsappUrl(quoteMessage())} aria-label={`Contact us on WhatsApp at ${phoneDisplay}`}>
-            <Phone size={15} /> <span>{phoneDisplay}</span>
-          </a>
         </div>
       </header>
       {menuOpen && <button className="nav-backdrop" aria-label="Close navigation menu" onClick={closeMenu} />}

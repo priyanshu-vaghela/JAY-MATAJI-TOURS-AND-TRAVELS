@@ -6,12 +6,12 @@ $password = getenv('DB_PASSWORD');
 $dbname = getenv('DB_NAME') ?: 'jay_mataji';
 
 if ($user === false || $user === '' || $password === false || $password === '') {
-    http_response_code(500);
-    exit('Database credentials are not configured. Set DB_USER and DB_PASSWORD in the hosting control panel.');
+    throw new RuntimeException('Database credentials are not configured.');
 }
 
 $connection = mysqli_connect($host, $user, $password, $dbname);
 if (!$connection) {
-    die("Connection failed: " . mysqli_connect_error());
+    throw new RuntimeException('Database connection failed.');
 }
+$connection->set_charset('utf8mb4');
 ?>

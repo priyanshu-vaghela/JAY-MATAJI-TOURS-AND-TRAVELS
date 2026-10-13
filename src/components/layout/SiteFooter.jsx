@@ -1,7 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { appPath } from '../../app/paths.js';
-import { phoneDisplay, quoteMessage, whatsappUrl } from '../../features/contact/contact.js';
 
 export default function SiteFooter() {
   return (
@@ -30,11 +29,7 @@ export default function SiteFooter() {
           </span>
           <ArrowUpRight size={20} />
         </a>
-        <div className="footer-contact">
-          <strong>Call or WhatsApp {phoneDisplay}</strong>
-          <span>Every day, 8:00 AM to 8:00 PM</span>
-          <a href={whatsappUrl(quoteMessage())}>Get a quote on WhatsApp</a>
-        </div>
+        <div className="footer-contact"><strong>Planning a journey?</strong><span>Send a trip request and we’ll confirm availability and your quote.</span><Link to="/book">Book a trip</Link></div>
       </div>
       <div className="footer-bottom">
         <div className="page-shell footer-bottom-inner">
