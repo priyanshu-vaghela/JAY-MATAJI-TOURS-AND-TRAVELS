@@ -1,0 +1,44 @@
+{
+  "name": "Jay Mataji Tours & Travels",
+  "short_name": "Jay Mataji Tours",
+  "description": "Dependable car and driver for pilgrimage, outstation tours, and family holidays across Gujarat and India.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#193c2e",
+  "theme_color": "#193c2e",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["travel", "transportation"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/optimized/hero.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "label": "Jay Mataji Tours & Travels - Book your car and driver"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Book a Trip",
+      "short_name": "Book Now",
+      "description": "Submit a trip request",
+      "url": "/book",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    }
+  ]
+}

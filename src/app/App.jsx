@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import SiteFooter from '../components/layout/SiteFooter.jsx';
 import SiteHeader from '../components/layout/SiteHeader.jsx';
+import FloatingContact from '../components/layout/FloatingContact.jsx';
 import DestinationDetailPage from '../pages/DestinationDetailPage.jsx';
 import HomePage from '../pages/HomePage.jsx';
 import BookingPage from '../pages/BookingPage.jsx';
@@ -23,6 +24,7 @@ function NotFoundPage() {
 
 export default function App() {
   const location = useLocation();
+  const isAdmin = location.pathname.startsWith('/admin');
 
   useEffect(() => {
     if (location.pathname === '/') {
@@ -50,6 +52,7 @@ export default function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <SiteFooter />
+      {!isAdmin && <FloatingContact />}
     </>
   );
 }

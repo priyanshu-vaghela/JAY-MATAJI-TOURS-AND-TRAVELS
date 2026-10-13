@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { ArrowUpRight, Menu, Phone, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { appPath } from '../../app/paths.js';
+import { callUrl, phoneDisplay } from '../../features/contact/contact.js';
 
 const navigation = [
-  ['About', 'about_us'],
   ['Destinations', 'destination'],
-  ['Our fleet', 'choose-your-ride'],
+  ['Our Fleet', 'choose-your-ride'],
+  ['About', 'about_us'],
+  ['Why Us', 'why-us'],
+  ['Reviews', 'reviews'],
+  ['FAQ', 'faq'],
 ];
 
 export default function SiteHeader() {
@@ -37,29 +41,36 @@ export default function SiteHeader() {
       <header className="site-header">
         <div className="header-inner page-shell">
           <Link className="brand" to="/" aria-label="Jay Mataji Tours and Travels home" onClick={closeMenu}>
-            <img src={appPath('/assets/brand-wordmark.svg')} alt="" />
+            <img src={appPath('/assets/brand-wordmark.svg')} alt="Jay Mataji Tours & Travels" />
           </Link>
 
-          <button
-            className="menu-toggle icon-button"
-            type="button"
-            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((isOpen) => !isOpen)}
-          >
-            {menuOpen ? <X size={21} /> : <Menu size={21} />}
-          </button>
-
-          <nav className={`site-nav${menuOpen ? ' is-open' : ''}`} aria-label="Main navigation">
-            {navigation.map(([label, id]) => (
-              <a key={id} href={sectionHref(id)} onClick={closeMenu}>
-                {label}
-              </a>
-            ))}
-            <a className="nav-cta" href={sectionHref('plan-trip')} onClick={closeMenu}>
-              Book a trip <ArrowUpRight size={15} strokeWidth={1.8} />
+          <div className="header-right-group">
+            <a className="header-contact" href={callUrl()} title={`Call ${phoneDisplay}`}>
+              <Phone size={14} strokeWidth={2.2} />
+              <span>{phoneDisplay}</span>
             </a>
-          </nav>
+
+            <button
+              className="menu-toggle icon-button"
+              type="button"
+              aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((isOpen) => !isOpen)}
+            >
+              {menuOpen ? <X size={21} /> : <Menu size={21} />}
+            </button>
+
+            <nav className={`site-nav${menuOpen ? ' is-open' : ''}`} aria-label="Main navigation">
+              {navigation.map(([label, id]) => (
+                <a key={id} href={sectionHref(id)} onClick={closeMenu}>
+                  {label}
+                </a>
+              ))}
+              <a className="nav-cta" href={sectionHref('plan-trip')} onClick={closeMenu}>
+                Book a trip <ArrowUpRight size={15} strokeWidth={1.8} />
+              </a>
+            </nav>
+          </div>
         </div>
       </header>
       {menuOpen && <button className="nav-backdrop" aria-label="Close navigation menu" onClick={closeMenu} />}

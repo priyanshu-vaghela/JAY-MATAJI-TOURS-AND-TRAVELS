@@ -1,6 +1,9 @@
 <?php
 require_once __DIR__ . '/bootstrap.php';
 
+// Rate limit: max 5 booking submissions per minute per IP
+checkRateLimit('booking', 5);
+
 $input = requireJsonRequest();
 $fields = [];
 $name = cleanText($input['customerName'] ?? '', 120);

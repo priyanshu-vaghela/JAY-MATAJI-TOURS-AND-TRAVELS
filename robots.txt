@@ -1,2 +1,18 @@
 User-agent: *
 Allow: /
+
+# Block access to API endpoints from crawlers (they have no crawlable content)
+Disallow: /api/
+Disallow: /admin/
+
+# Block source/private directories
+Disallow: /server/
+Disallow: /src/
+Disallow: /legacy/
+Disallow: /docs/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.env
+
+# Sitemap location
+Sitemap: https://www.jaymatajitours.com/sitemap.xml

@@ -1,5 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#193c2e"/>
-  <path fill="#d8e16b" d="M17 15h10l8 22 8-22h10L39 50H31z"/>
-  <path fill="#fffefa" d="M17 44h30v5H17z"/>
+  <defs>
+    <linearGradient id="favCrest" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e4836"/>
+      <stop offset="100%" stop-color="#0f261c"/>
+    </linearGradient>
+    <linearGradient id="favGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fae89f"/>
+      <stop offset="100%" stop-color="#d4af37"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Shield Circle -->
+  <circle cx="32" cy="32" r="30" fill="url(#favCrest)" stroke="url(#favGold)" stroke-width="2.5"/>
+  <circle cx="32" cy="32" r="26" fill="none" stroke="#d4af37" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.8"/>
+
+  <!-- Rising Sun -->
+  <path d="M 23 31 A 9 9 0 0 1 41 31 Z" fill="#ffd56b"/>
+
+  <!-- Hills & Winding Road -->
+  <path d="M 12 43 Q 22 34 32 38 Q 42 34 52 43 L 52 50 A 26 26 0 0 1 12 50 Z" fill="#143224"/>
+  <path d="M 32 38 Q 30 46 25 57 L 39 57 Q 34 46 32 38 Z" fill="url(#favGold)"/>
+
+  <!-- Top Compass Star -->
+  <polygon points="32,7 33.5,11.5 38,12.5 34.5,15.5 35.5,20 32,17.5 28.5,20 29.5,15.5 26,12.5 30.5,11.5" fill="url(#favGold)"/>
 </svg>
